@@ -1,0 +1,23 @@
+type Query {
+    "all currently know pets"
+    pets:[Pet]
+    petsByKind(kind: PetKind!): [Pet]
+    pet(name: String!): Pet
+}
+
+"""
+A pet can be a Dog or Cat
+A Pet has a human owner
+"""
+
+enum PetKind{
+    CAT
+    DOG
+    BIRD
+}
+
+
+type Pet {
+    name: String
+    color: String
+}
