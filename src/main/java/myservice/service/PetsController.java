@@ -32,6 +32,7 @@ public class PetsController {
 
     @SchemaMapping(typeName = "Pet", field = "owner")
     Person owner(Pet pet) {
+        System.out.println(pet.ownerId());
         return petService.getPerson(pet.ownerId());
     }
 }

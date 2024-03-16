@@ -19,13 +19,16 @@ enum PetKind{
 scalar Date @specifiedBy(url:
 "https://scalars.graphql.org/andimarek/local-date")
 
+
 type Pet {
+    id: ID
     name: String
     color: String
     owner: Person
     dateOfBirth: Date
 }
 type Person {
+    id: ID
     firstName: String
     lastName: String
 }
