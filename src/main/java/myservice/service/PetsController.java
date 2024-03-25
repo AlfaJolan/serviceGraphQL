@@ -30,6 +30,11 @@ public class PetsController {
         return petService.findPetByName(name);
     }
 
+    @QueryMapping
+    List<Pet> petSearch(@Argument PetSearchInput input){
+        return petService.petSearch(input);
+    }
+
     @SchemaMapping(typeName = "Pet", field = "owner")
     Person owner(Pet pet) {
         System.out.println(pet.ownerId());

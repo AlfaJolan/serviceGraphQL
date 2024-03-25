@@ -3,7 +3,21 @@ type Query {
     pets:[Pet]
     petsByKind(kind: PetKind!): [Pet]
     pet(name: String!): Pet
+    petSearch(input: PetSearchInput!): [Pet]
 }
+# New mutation field
+type Mutation {
+    changePetName(id: ID!, newName: String!): ChangePetNamePayload
+}
+# New type
+type ChangePetNamePayload {
+    pet: Pet
+}
+input PetSearchInput {
+    namePattern: String
+    ownerPattern: String
+}
+
 
 """
 A pet can be a Dog or Cat

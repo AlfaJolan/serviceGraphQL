@@ -34,4 +34,20 @@ public class PetService {
         }
         return null;
     }
+    Person getPersonByName(String firstName){
+        for(Person person: persons){
+            if(person.firstName().equals(firstName)) return person;
+        }
+        return null;
+    }
+    List<Pet> petSearch(PetSearchInput input){
+        List<Pet> result = new ArrayList<>();
+        for (Pet pet : pets) {
+            if (pet.name().equals(input.namePattern()) || getPersonByName(input.ownerPattern()).equals(input.ownerPattern())) {
+                System.out.println("Hereerererereeeeeeeeeeeeeeeeeeeeeeeeeeee");
+                result.add(pet);
+            }
+        }
+        return result;
+    }
 }
