@@ -50,4 +50,13 @@ public class PetService {
         }
         return result;
     }
+
+    ChangePetNamePayload changePetName(String id, String newName){
+        for (Pet pet : pets) {
+            if (pet.name().equals(id)) {
+                pet.name();
+            }
+        }
+        return null;
+    }
 }

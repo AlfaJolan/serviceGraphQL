@@ -2,6 +2,7 @@ package myservice.service;
 
 import jakarta.annotation.PostConstruct;
 import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.stereotype.Controller;
@@ -39,5 +40,13 @@ public class PetsController {
     Person owner(Pet pet) {
         System.out.println(pet.ownerId());
         return petService.getPerson(pet.ownerId());
+    }
+
+    @MutationMapping
+    ChangePetNamePayload changePetName(
+            @Argument String id,
+            @Argument String newName
+    ){
+
     }
 }
