@@ -1,6 +1,10 @@
-package myservice.service;
+package myservice.service.services;
 
 import jakarta.annotation.PostConstruct;
+import myservice.service.ChangePetNamePayload;
+import myservice.service.creatures.Person;
+import myservice.service.creatures.Pet;
+import myservice.service.PetSearchInput;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -19,7 +23,7 @@ public class PetService {
         persons.add(new Person("ID1","Nurkhan","Kuangaliyev"));
     }
 
-    Pet findPetByName(String name){
+    public Pet findPetByName(String name){
         for (Pet pet : pets) {
             if (pet.name().equals(name)) {
                 System.out.println("Hereerererereeeeeeeeeeeeeeeeeeeeeeeeeeee");
@@ -28,19 +32,19 @@ public class PetService {
         }
         return null;
     }
-    Person getPerson(String id){
+    public Person getPerson(String id){
         for(Person person: persons){
             if(person.id().equals(id)) return person;
         }
         return null;
     }
-    Person getPersonByName(String firstName){
+    public Person getPersonByName(String firstName){
         for(Person person: persons){
             if(person.firstName().equals(firstName)) return person;
         }
         return null;
     }
-    List<Pet> petSearch(PetSearchInput input){
+    public List<Pet> petSearch(PetSearchInput input){
         List<Pet> result = new ArrayList<>();
         for (Pet pet : pets) {
             if (pet.name().equals(input.namePattern()) || getPersonByName(input.ownerPattern()).equals(input.ownerPattern())) {
@@ -51,7 +55,7 @@ public class PetService {
         return result;
     }
 
-    ChangePetNamePayload changePetName(String id, String newName){
+    public ChangePetNamePayload changePetName(String id, String newName){
         for (int i = 0; i < pets.size(); i++) {
             if (pets.get(i).id().equals(id)) {
                 // Создаем новый экземпляр Pet с измененным именем

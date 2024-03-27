@@ -1,4 +1,6 @@
 package myservice.service;
 
-record ChangePetNamePayload(Pet pet) {
+import myservice.service.creatures.Pet;
+
+public record ChangePetNamePayload(Pet pet) {
 }

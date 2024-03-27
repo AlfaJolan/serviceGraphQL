@@ -4,7 +4,10 @@ type Query {
     petsByKind(kind: PetKind!): [Pet]
     pet(name: String!): Pet
     petSearch(input: PetSearchInput!): [Pet]
+    fastFood: [FastFood]
 }
+
+
 # New mutation field
 type Mutation {
     changePetName(id: ID!, newName: String!): ChangePetNamePayload
@@ -46,3 +49,16 @@ type Person {
     firstName: String
     lastName: String
 }
+
+interface Food{
+    name: String
+}
+type Burger implements Food{
+    name: String
+    fatness: Boolean
+}
+type Pizza implements Food{
+    name: String
+    isContainPineApples: Boolean
+}
+union FastFood = Burger | Pizza
