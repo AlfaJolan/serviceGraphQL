@@ -1,6 +1,5 @@
 package myservice.service;
 
-import jakarta.annotation.PostConstruct;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
@@ -15,7 +14,7 @@ import java.util.List;
 
 @Controller
 public class PetsController {
-
+// 95 STR to 115 STR
     PetService petService;
 
     public PetsController(PetService petService){
@@ -47,6 +46,6 @@ public class PetsController {
             @Argument String id,
             @Argument String newName
     ){
-
+        return petService.changePetName(id,newName);
     }
 }
