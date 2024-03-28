@@ -5,6 +5,9 @@ type Query {
     pet(name: String!): Pet
     petSearch(input: PetSearchInput!): [Pet]
     fastFood: [FastFood]
+
+    #For testing new error
+    petErrorTest: [Pet]
 }
 
 

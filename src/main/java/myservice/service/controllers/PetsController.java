@@ -1,5 +1,10 @@
 package myservice.service.controllers;
 
+import graphql.ErrorType;
+import graphql.GraphQLError;
+import graphql.GraphqlErrorBuilder;
+import graphql.execution.DataFetcherResult;
+import graphql.schema.DataFetchingEnvironment;
 import myservice.service.*;
 import myservice.service.creatures.Person;
 import myservice.service.creatures.Pet;
@@ -34,6 +39,20 @@ public class PetsController {
     List<Pet> petSearch(@Argument PetSearchInput input){
         return petService.petSearch(input);
     }
+
+    @QueryMapping
+    DataFetcherResult<List<Pet>> petErrorTest(DataFetchingEnvironment env) {
+        List<Pet> result = petService.pets;
+        GraphQLError error = GraphqlErrorBuilder.newError(env)
+                .errorType(ErrorType.DataFetchingException)
+                .message("Data could only be partially loaded")
+                .build();
+        return DataFetcherResult.<List<Pet>>newResult()
+                .data(result)
+                .error(error)
+                .build();
+    }
+
 
     @SchemaMapping(typeName = "Pet", field = "owner")
     Person owner(Pet pet) {
